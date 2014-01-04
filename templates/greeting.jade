@@ -1,0 +1,18 @@
+link(rel='import', href='../bower_components/polymer/polymer.html')
+
+polymer-element(name='polymer-greeting', attributes='')
+  template
+    style.
+      /* styles for the custom element itself - lowest specificity */
+      :host { display: block; }
+      /* 
+      style if an ancestor has the different class
+      :host(.different) { } 
+      */
+    h1 {{ greeting }}, {{ greeting }}!
+    span Update text to change the greeting.
+    input(type='text', value='{{ greeting }}')
+  script.
+    Polymer('polymer-greeting', {
+      greeting : '\'Allo'
+    });

@@ -1,0 +1,62 @@
+doctype
+html
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    title Polymer WebApp
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    // Place favicon.ico and apple-touch-icon.png in the root directory
+
+    // build:css styles/main.css 
+    link(rel='stylesheet', href='styles/main.css')
+    // endbuild
+
+    // Place your HTML imports here 
+    script(src='bower_components/platform/platform.js')
+    link(rel='import', href='elements/list.html')
+    link(rel='import', href='elements/greeting.html')
+    // *** YEOMAN: INSERTION POINT FOR ELEMENT IMPORTS - DO NOT DELETE! ***
+  body<% if (cssProcessor === 'sass') { %>
+    .container
+      .header
+        ul.nav.nav-pills.pull-right
+          li.active: a(href='#') Home
+          li: a(href='#') About
+          li: a(href='#') Contact
+        h3.text-muted' <%= appname %>
+
+      .jumbotron
+         h1 'Allo, 'Allo!
+         p.lead Always a pleasure scaffolding your apps.
+         p: a.btn.btn-lg.btn-success(href='#') Splendid!
+
+      .row.marketing
+        .col-lg-6
+          h4 HTML5 Boilerplate
+          p HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+
+          h4 Bootstrap
+          p Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.
+
+          h4 Platform.js
+          p Web Component polyfills for Custom Elements, HTML Imports, Templates and ShadowDOM.
+
+          h4 Polymer
+          p A new type of library for the web, built on top of Web Components, and designed to leverage the evolving web platform on modern browsers.
+
+      .footer
+        p ♥ from the Yeoman team
+
+    // *** YEOMAN: INSERTION POINT FOR ELEMENTS - DO NOT DELETE! ***<% } else { // cssProcessor === 'sass' %>
+    .hero-unit
+      polymer-greeting
+      p You now have
+      polymer-list
+
+    // *** YEOMAN: INSERTION POINT FOR ELEMENTS - DO NOT DELETE! ***
+    <% } // cssProcessor === 'sass' %>
+    script.
+      document.addEventListener('WebComponentsReady', function() {
+        // Perform some behaviour
+      });

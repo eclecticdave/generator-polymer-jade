@@ -1,0 +1,29 @@
+link(rel='import', href='../bower_components/polymer/polymer.html')
+<%= importLinkLines %>
+polymer-element(name='polymer-<%= name %>', <% if (includeConstructor) { %> constructor='<%= _.classify(name) %>Element',<% } %> attributes='')
+  template
+    style.
+      /* styles for the custom element itself - lowest specificity */
+      :host { display: block; }
+      /* 
+      style if an ancestor has the different class
+      :host(.different) { } 
+      */
+    span I'm <b>polymer-<%= _.camelize(name) %></b>. This is my Shadow DOM.
+<%= importTagLines %>
+  script.
+    Polymer('polymer-<%= name %>', {
+      //applyAuthorStyles: true,
+      //resetStyleInheritance: true,
+
+      // element is fully prepared
+      ready: function(){ },
+      // instance of the element is created
+      created: function() { },
+      // instance was inserted into the document
+      enteredView: function() { },
+      // instance was removed from the document
+      leftView: function() { },
+      // attribute added, removed or updated
+      attributeChanged: function(attrName, oldVal, newVal) { }
+    });

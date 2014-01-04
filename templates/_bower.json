@@ -1,0 +1,10 @@
+{
+  "name": "<%= _.slugify(appname) %>",
+  "version": "0.0.0",
+  "dependencies": {<% if (cssProcessor === 'sass') { %>
+    "sass-bootstrap": "~3.0.0",<% } %>
+    "platform": "Polymer/platform#master",
+    "polymer": "Polymer/polymer#master"
+  },
+  "devDependencies": {}
+}
