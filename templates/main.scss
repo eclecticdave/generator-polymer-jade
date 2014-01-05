@@ -89,3 +89,8 @@ body {
         border-bottom: 0;
     }
 }
+<% if (uiElements) { %>
+polymer-ui-sidebar-menu {
+  height: 100%;
+  min-width:20%;
+}<% } %>

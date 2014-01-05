@@ -14,10 +14,46 @@ html
 
     // Place your HTML imports here 
     script(src='bower_components/platform/platform.js')
+    <% if (uiElements) { %>
+    link(rel='import', href='bower_components/polymer-flex-layout/polymer-flex-layout.html')
+    link(rel='import', href='bower_components/polymer-ui-sidebar/polymer-ui-sidebar.html')
+    link(rel='import', href='bower_components/polymer-ui-sidebar-menu/polymer-ui-sidebar-menu.html')
+    link(rel='import', href='bower_components/polymer-ui-menu-item/polymer-ui-menu-item.html')
+    link(rel='import', href='bower_components/polymer-ui-submenu-item/polymer-ui-submenu-item.html')
+    link(rel='import', href='bower_components/polymer-ui-tabs/polymer-ui-tabs.html')<% } else { %>
     link(rel='import', href='elements/list.html')
-    link(rel='import', href='elements/greeting.html')
+    link(rel='import', href='elements/greeting.html')<% } %>
     // *** YEOMAN: INSERTION POINT FOR ELEMENT IMPORTS - DO NOT DELETE! ***
-  body<% if (cssProcessor === 'sass') { %>
+  body<% if (uiElements) { %>
+    polymer-flex-layout
+    
+    polymer-ui-sidebar-menu(label='Sidebar')
+      polymer-ui-menu-item(label='Item 1', icon='menu')
+      polymer-ui-submenu-item(label='SubMenu 1', icon='settings')
+        polymer-ui-menu-item(label='Item 1.1', icon='menu')
+        polymer-ui-submenu-item(label='SubMenu 1.2', icon='settings')
+          polymer-ui-menu-item(label='Item 1.2.1', icon='menu')
+          polymer-ui-submenu-item(label='SubMenu 1.2.2', icon='settings')
+            polymer-ui-menu-item(label='Item 1.2.2.1', icon='menu')
+            polymer-ui-menu-item(label='Item 1.2.2.2', icon='menu')
+            polymer-ui-menu-item(label='Item 1.2.2.3', icon='menu')
+          polymer-ui-menu-item(label='Item 1.2.3', icon='menu')
+        polymer-ui-menu-item(label='Item 1.3', icon='menu')
+      polymer-ui-menu-item(label='Item 2', icon='menu')
+      polymer-ui-menu-item(label='Item 3', icon='menu')
+      polymer-ui-menu-item(label='Item 4', icon='menu')
+      polymer-ui-menu-item(label='Item 5', icon='menu')
+
+    div(flex)
+      polymer-ui-tabs(selected='0')
+        span One
+        span Two
+        span Three
+        span Four
+        span Five
+
+      p.
+        Ahab seized a loaded musket from the rack (forming part of most South-Sea-men's cabin furniture), and pointing it towards Starbuck, exclaimed: "There is one God that is Lord over the earth, and one Captain that is lord over the Pequod.—On deck!"<% } else if (cssProcessor === 'sass') { %>
     .container
       .header
         ul.nav.nav-pills.pull-right
@@ -48,14 +84,14 @@ html
       .footer
         p ♥ from the Yeoman team
 
-    // *** YEOMAN: INSERTION POINT FOR ELEMENTS - DO NOT DELETE! ***<% } else { // cssProcessor === 'sass' %>
+    // *** YEOMAN: INSERTION POINT FOR ELEMENTS - DO NOT DELETE! ***<% } else { %>
     .hero-unit
       polymer-greeting
       p You now have
       polymer-list
 
     // *** YEOMAN: INSERTION POINT FOR ELEMENTS - DO NOT DELETE! ***
-    <% } // cssProcessor === 'sass' %>
+    <% } %>
     script.
       document.addEventListener('WebComponentsReady', function() {
         // Perform some behaviour

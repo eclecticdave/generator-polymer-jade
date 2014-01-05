@@ -37,13 +37,19 @@ Generator.prototype.askFor = function askFor() {
       name: 'cssProcessor',
       message: 'Would you like sass/compass or stylus as a css preprocessor',
       choices: ['stylus', 'sass', 'neither']
+  },
+  { type: 'confirm',
+    name: 'uiElements',
+    message: 'Include Polymer UI Elements?',
+    default: true
   }];
+
 
   this.prompt(prompts, function (props) {
     // manually deal with the response, get back and store the results.
     // we change a bit this way of doing to automatically do this in the self.prompt() method.
-    console.log('props.cssProcessor = ' + props.cssProcessor);
     this.cssProcessor = props.cssProcessor;
+    this.uiElements = props.uiElements
 
     cb();
   }.bind(this));
@@ -56,7 +62,7 @@ Generator.prototype.git = function git() {
 
 Generator.prototype.bower = function bower() {
   this.copy('bowerrc', '.bowerrc');
-  this.copy('_bower.json', 'bower.json');
+  this.template('_bower.json', 'bower.json');
 };
 
 Generator.prototype.jshint = function jshint() {
@@ -83,12 +89,11 @@ Generator.prototype.bootstrapImg = function bootstrapImg(){
 }
 
 Generator.prototype.mainStylesheet = function mainStylesheet() {
-  console.log('cssProcessor = ' + this.cssProcessor);
   var css = 'main.' + 
     (this.cssProcessor === 'sass' ? 'scss' :
      this.cssProcessor === 'stylus' ? 'styl' :
      'css');
-  this.copy(css, 'app/styles/' + css);
+  this.template(css, 'app/styles/' + css);
 };
 
 Generator.prototype.setupEnv = function setupEnv() {
