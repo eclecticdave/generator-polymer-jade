@@ -109,6 +109,7 @@ Generator.prototype.setupEnv = function setupEnv() {
   this.copy('htaccess', 'app/.htaccess');
   this.copy('list.jade', 'app/elements/list.jade');
   this.copy('greeting.jade', 'app/elements/greeting.jade');
+  this.copy('demo.jade', 'app/elements/demo.jade');
   this.template('index.jade', 'app/index.jade');
 };
 
