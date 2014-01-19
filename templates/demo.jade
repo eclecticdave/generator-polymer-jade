@@ -12,8 +12,11 @@ polymer-element(name='polymer-demo',  attributes='')
   template
     style.
       polymer-ui-sidebar-menu {
-        min-width: 20%;
+        width: 40%;
+        height: 100%;
       }
+
+      polymer-ui-toolbar { width: 100%; }
 
       footer div {
         border-style: inset;
@@ -21,71 +24,74 @@ polymer-element(name='polymer-demo',  attributes='')
         padding: 5px;
         padding-left: 10px;
         background-color: #dddddd;
-        height: 25px;
+        height: 10%;
       }
 
-      /* styles for the custom element itself - lowest specificity
-      :host { min-height: 100% !important;}  */
+      /* styles for the custom element itself - lowest specificity */
+      :host { height: 100%; width:100%; } 
       /* 
       style if an ancestor has the different class
       :host(.different) { } 
       */
 
-    polymer-grid-layout(layout='{{layout}}')
+    div(style='height:100%; margin:0; padding:0')
+      polymer-flex-layout(vertical)
 
-    polymer-ui-toolbar(class='animate')
-      polymer-ui-icon-button(icon='menu', hidden?='{{hideMenuButton}}', on-tap='{{menuActionTap}}', active='{{menuActive}}')
-      div(flex) Title
-      polymer-ui-icon-button(icon='briefcase')
-      polymer-ui-icon-button(icon='marker')
-      polymer-ui-icon-button(icon='account')
-      polymer-ui-icon-button(icon='dots')
+      polymer-ui-toolbar(class='animate')
+        polymer-ui-icon-button(icon='menu', hidden?='{{hideMenuButton}}', on-tap='{{menuActionTap}}', active='{{menuActive}}')
+        div(flex) Title
+        polymer-ui-icon-button(icon='briefcase')
+        polymer-ui-icon-button(icon='marker')
+        polymer-ui-icon-button(icon='account')
+        polymer-ui-icon-button(icon='dots')
+      
+      div(flex)
+        div
 
-    polymer-ui-sidebar-menu(label='Sidebar', v-flex)
-      polymer-ui-menu-item(label='Item 1', icon='menu')
-      polymer-ui-submenu-item(label='SubMenu 1', icon='settings')
-        polymer-ui-menu-item(label='Item 1.1', icon='menu')
-        polymer-ui-submenu-item(label='SubMenu 1.2', icon='settings')
-          polymer-ui-menu-item(label='Item 1.2.1', icon='menu')
-          polymer-ui-submenu-item(label='SubMenu 1.2.2', icon='settings')
-            polymer-ui-menu-item(label='Item 1.2.2.1', icon='menu')
-            polymer-ui-menu-item(label='Item 1.2.2.2', icon='menu')
-            polymer-ui-menu-item(label='Item 1.2.2.3', icon='menu')
-          polymer-ui-menu-item(label='Item 1.2.3', icon='menu')
-        polymer-ui-menu-item(label='Item 1.3', icon='menu')
-      polymer-ui-menu-item(label='Item 2', icon='menu')
-      polymer-ui-menu-item(label='Item 3', icon='menu')
-      polymer-ui-menu-item(label='Item 4', icon='menu')
-      polymer-ui-menu-item(label='Item 5', icon='menu')
+          polymer-flex-layout
 
-    div(v-flex)
-      polymer-ui-tabs(selected='0')
-        span One
-        span Two
-        span Three
-        span Four
-        span Five
+          polymer-ui-sidebar-menu#menu(label='Sidebar')
+            polymer-ui-menu-item(label='Item 1', icon='menu')
+            polymer-ui-submenu-item(label='SubMenu 1', icon='settings')
+              polymer-ui-menu-item(label='Item 1.1', icon='menu')
+              polymer-ui-submenu-item(label='SubMenu 1.2', icon='settings')
+                polymer-ui-menu-item(label='Item 1.2.1', icon='menu')
+                polymer-ui-submenu-item(label='SubMenu 1.2.2', icon='settings')
+                  polymer-ui-menu-item(label='Item 1.2.2.1', icon='menu')
+                  polymer-ui-menu-item(label='Item 1.2.2.2', icon='menu')
+                  polymer-ui-menu-item(label='Item 1.2.2.3', icon='menu')
+                polymer-ui-menu-item(label='Item 1.2.3', icon='menu')
+              polymer-ui-menu-item(label='Item 1.3', icon='menu')
+            polymer-ui-menu-item(label='Item 2', icon='menu')
+            polymer-ui-menu-item(label='Item 3', icon='menu')
+            polymer-ui-menu-item(label='Item 4', icon='menu')
+            polymer-ui-menu-item(label='Item 5', icon='menu')
 
-      p.
-        Ahab seized a loaded musket from the rack (forming part of most South-Sea-men's cabin furniture), and pointing it towards Starbuck, exclaimed: 'There is one God that is Lord over the earth, and one Captain that is lord over the Pequod.—On deck!'
+          div 
+            polymer-ui-tabs(selected='0')
+              span One
+              span Two
+              span Three
+              span Four
+              span Five
 
-    footer
-      polymer-flex-layout
-      div(flex) This is a footer
-      div(flex) Section 2
-      div(flex) Section 3
+            p.
+              Ahab seized a loaded musket from the rack (forming part of most South-Sea-men's cabin furniture), and pointing it towards Starbuck, exclaimed: 'There is one God that is Lord over the earth, and one Captain that is lord over the Pequod.—On deck!'
 
+      footer
+        polymer-flex-layout
+        div(flex) This is a footer
+        div(flex) Section 2
+        div(flex) Section 3
+
+    polymer-collapse#collapse(targetId='menu', horizontal)
   script.
     Polymer('polymer-demo', {
       //applyAuthorStyles: true,
       //resetStyleInheritance: true,
 
       // element is fully prepared
-      ready: function(){
-        this.layout = [[1,1,1],
-                       [2,3,3],
-                       [4,4,4]];
-      },
+      ready: function() { },
       // instance of the element is created
       created: function() { },
       // instance was inserted into the document
@@ -93,5 +99,9 @@ polymer-element(name='polymer-demo',  attributes='')
       // instance was removed from the document
       leftView: function() { },
       // attribute added, removed or updated
-      attributeChanged: function(attrName, oldVal, newVal) { }
+      attributeChanged: function(attrName, oldVal, newVal) { },
+
+      menuActionTap: function() {
+        this.$.collapse.toggle();
+      }
     });
