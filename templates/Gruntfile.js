@@ -260,7 +260,7 @@ module.exports = function (grunt) {
        default: {
           options: {},
           files: {
-            '<%%= yeoman.dist %>/build.html': ['<%%= yeoman.app %>/index.html'],
+            '<%%= yeoman.dist %>/index.html': ['<%%= yeoman.dist %>/index.html'],
           }
       }
     },
@@ -322,6 +322,7 @@ module.exports = function (grunt) {
     'jade',
     <% if (cssProcessor === 'stylus'){ %>'stylus',<% } %>
     <% if (cssProcessor === 'sass'){ %>'compass:dist',<% } %>
+    'copy',
     'vulcanize',
     'useminPrepare',
     'imagemin',
@@ -329,7 +330,6 @@ module.exports = function (grunt) {
     // 'concat',
     'cssmin',
     // 'uglify',
-    'copy',
     'usemin'
   ]);
 
